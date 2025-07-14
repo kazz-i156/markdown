@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest # 実行環境
     steps: # 実行する内容
     #  - run: echo "Hello World!"
-      - docker run --rm ubuntu bash -c "echo 'こんにちは、Docker！'"
+       - run: docker run --rm ubuntu bash -c "echo 'こんにちは、Docker！'"
