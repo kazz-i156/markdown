@@ -1,0 +1,28 @@
+name: GENERATE-DOCKER-IMAGE
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-docker-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: BuildImage
+        uses: docker/build-push-action@v5
+        with:
+          context: ./
+          file: ./Dockerfile
+          outputs: type=tar,dest=docker-image.tar
+          push: false
+          tags: "my-docker-image"
+
+      - name: UploadArtifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-build-output
+          path: ./docker-image.tar
+
